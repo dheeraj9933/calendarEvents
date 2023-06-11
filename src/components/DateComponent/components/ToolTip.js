@@ -68,7 +68,6 @@ export default function Tooltip({
       }
     };
   }, [activeToolTip, date , isMobile]);
-  console.log(events);
 
   return (
     <div
