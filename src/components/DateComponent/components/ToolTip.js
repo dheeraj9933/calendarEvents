@@ -68,6 +68,7 @@ export default function Tooltip({
       }
     };
   }, [activeToolTip, date , isMobile]);
+
   return (
     <div
       className={`tooltip ${activeToolTip?.date === date ? 'show' : ''}`}
@@ -83,7 +84,7 @@ export default function Tooltip({
                 <li key={event.title}>
                   <h4 className='text-overflow'>{event.title}</h4>
                   <p className='text-overflow'>{event.description}</p>
-                  {Array.isArray(event.tags) && event.tags.length && (
+                  {Array.isArray(event.tags) && event.tags.length > 0 && (
                     <ul className='tooltip-tags'>
                       {event.tags.map(tag => (
                         <li key={`tooltip-${tag}`} className='tooltip-tag'>
