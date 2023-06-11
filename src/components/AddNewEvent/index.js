@@ -3,7 +3,6 @@ import AddSvg from '../../assets/add-event-form.svg';
 import './style.scss';
 import AllTags from '../../constants/tags.json';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import TagList from './components/TagList';
 export default function AddNewEvent({ customClose }) {
   const [showTags, setShowTags] = useState(false);
