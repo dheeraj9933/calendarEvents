@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import AddSvg from '../../assets/add-event-form.svg';
 import './style.scss';
 import AllTags from '../../constants/tags.json';
@@ -10,14 +10,15 @@ export default function AddNewEvent({ customClose }) {
   const [tags, setTags] = useState({});
   const [eventTitle, setEventTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [eventDate, setEventDate] = useState(null);
+  const [eventDate, setEventDate] = useState('');
+  const date = useRef();
 
   const handleTagChange = value => {
     const updatesTags = { ...tags };
     updatesTags[value] = !tags[value];
     setTags(updatesTags);
   };
-  //   check if is valid
+  // check if is valid
   useEffect(() => {
     if (eventTitle && description && eventDate) {
       setIsValid(true);
@@ -25,7 +26,11 @@ export default function AddNewEvent({ customClose }) {
       setIsValid(false);
     }
   }, [eventTitle, description, eventDate]);
-  //   Create object with all the tags
+
+  const openCalendar = () => {
+    date.current.showPicker();
+  };
+  // Create object with all the tags
   useEffect(() => {
     const tagsObj = {};
     AllTags.forEach(tag => {
@@ -54,13 +59,26 @@ export default function AddNewEvent({ customClose }) {
             <label htmlFor=''>
               Event Date <span className='astereisk'>*</span>
             </label>
-            <input
-              type='date'
-              name=''
-              id=''
-              value={eventDate}
-              onChange={e => setEventDate(e.target.value)}
-            />
+            <div className='date-input'>
+              <input
+                ref={date}
+                type='date'
+                name=''
+                id=''
+                value={eventDate}
+                onChange={e => setEventDate(e.target.value)}
+                className={`${eventDate ? '' : 'hide'}`}
+              />
+              {eventDate ? (
+                <span className='clear-date' onClick={() => setEventDate(null)}>
+                  <i class='fa-solid fa-xmark'></i>
+                </span>
+              ) : (
+                <span className='choose-date' onClick={openCalendar}>
+                  <i  class='fa-regular fa-calendar'></i>
+                </span>
+              )}
+            </div>
           </div>
           <div className='form-element text-box-container'>
             <label htmlFor=''>
@@ -80,7 +98,12 @@ export default function AddNewEvent({ customClose }) {
             <span className='add-tags-label'>
               <label htmlFor=''>Tags</label>
               <button onClick={() => setShowTags(!showTags)}>
-                Add Tags <i className={`fa-solid fa-sort-down ${showTags ? 'inverted' : ''}`}></i>
+                Add Tags{' '}
+                <i
+                  className={`fa-solid fa-sort-down ${
+                    showTags ? 'inverted' : ''
+                  }`}
+                ></i>
               </button>
               {showTags && (
                 <TagList tags={tags} handleTagChange={handleTagChange} />
@@ -99,7 +122,7 @@ export default function AddNewEvent({ customClose }) {
                       ></i>
                     </span>
                   );
-                } else return null
+                } else return null;
               })}
             </div>
           </div>

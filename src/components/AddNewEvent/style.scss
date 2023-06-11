@@ -75,6 +75,35 @@
     &.date-input-container {
       display: flex;
       justify-content: space-between;
+      .date-input {
+        display: flex;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #fff;
+        input {
+          padding: 5px 10px;
+        }
+        .clear-date {
+          display: flex;
+          padding: 0 10px;
+          color: $Crossbutton;
+          align-items: center;
+          background-color: $FormBg;
+        }
+      }
+      .choose-date {
+        display: flex;
+        justify-content: flex-end;
+        background-color: #fff;
+        padding: 5px ;
+        flex-basis: 300px;
+      }
+      input[type='date']::-webkit-inner-spin-button,
+      input[type='date']::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+      }
     }
     &.text-box-container {
       display: flex;
