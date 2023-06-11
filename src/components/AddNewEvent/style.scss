@@ -1,0 +1,169 @@
+@import '../../App.scss';
+
+.add-new-event-container {
+  height: 100%;
+  padding: 20px 20px 40px 20px;
+  display: flex;
+  flex-flow: column;
+
+  .title {
+    display: flex;
+    img {
+      align-self: baseline;
+    }
+    .title-text {
+      margin: 2px 0 0 10px;
+      flex-grow: 1;
+      font-weight: 300;
+      font-style: italic;
+    }
+    input {
+      display: block;
+      font-weight: 500;
+      width: 100%;
+      margin: 0 0 5px 0;
+      font-family: 'Roboto', sans-serif;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      border-bottom: 2px dashed $DisabledDateColor;
+      &::placeholder {
+        font-style: italic;
+        color: $DisabledDateColor;
+      }
+    }
+    .small {
+      font-size: 12px;
+    }
+  }
+
+  form {
+    margin-top: 20px;
+    border-radius: 7px;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    .form-inputs {
+      background-color: $FormBg;
+      flex-grow: 1;
+    }
+    .btn-container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        &.primary {
+          border-radius: 3px;
+          padding: 8px 15px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .form-element {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: $DisabledDateColor;
+    }
+    &.date-input-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    &.text-box-container {
+      display: flex;
+      flex-flow: column;
+      button {
+        font-size: 14px;
+        font-weight: 500;
+        color: $DisabledDateColor;
+      }
+      .add-tags-label {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        i {
+          position: relative;
+          top: -2px;
+          color: $ScrollbarColor;
+          transition: all 0.3s ease;
+          &.inverted {
+            transform: rotate(180deg);
+            top: 5px;
+          }
+        }
+      }
+      .tag-list {
+        position: absolute;
+        padding: 10px;
+        right: 0;
+        top: 25px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        .search-box {
+          background-color: $FormBg;
+          padding: 5px 10px;
+          margin-bottom: 10px;
+          input {
+            background-color: $FormBg;
+            padding: 5px 5px 5px 10px;
+          }
+        }
+        .tag-select-list {
+          list-style-type: none;
+          padding: 0;
+          max-height: 200px;
+          overflow-y: scroll;
+          li {
+            label {
+              cursor: pointer;
+              color: $FormTextColor;
+            }
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+          }
+        }
+      }
+      .active-tags {
+        margin-top: 10px;
+        height: 170px;
+        border: 2px solid #ddd;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+        .selected-tag {
+          color: $Text;
+          border-radius: 15px;
+          padding: 5px 10px;
+          font-size: 14px;
+          font-weight: 600;
+          background-color: $Tagbg;
+          i {
+            color: $Crossbutton;
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    textarea {
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 2px solid #ddd;
+      outline: none;
+      resize: none;
+      padding: 10px;
+      height: 100px;
+      max-height: 800px;
+    }
+  }
+}

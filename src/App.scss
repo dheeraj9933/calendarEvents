@@ -1,0 +1,197 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+  height: 100%;
+}
+
+// disabled bg of dates
+$GREY: #e8eae8;
+$DisabledDateBg: #f5f6fa;
+$DateBorder: #eeeeee;
+$DisabledDateColor: #bbbbbb;
+$DateColor: #848383;
+// button color
+$RED: #d6002a;
+// ○ Calendar Events shade:
+$RedBorder: #fd7070;
+
+$RedBg: #ffd4d4;
+$Yellowborder: #ffc785;
+$Yellowbg: #fff5db;
+$Blue: #375889;
+// ○ Calendar Event & Form Text color:
+$FormTextColor: #666666;
+// ○ Tooltip:
+$DarkGrey: #2a2b2d;
+$EventTitle: #e6e6e6;
+$EventDesc: #d0d0d0;
+$Tags: #979797;
+$ButtonBgGrey: #837f7f;
+$ScrollbarBg: #808285;
+$Scrollbar: #e2e2e2;
+$ScrollbarColor: #5f79a1;
+
+// ○ Add Event Form:
+$AddEventBg: #f5f6f5;
+$FormBg: #f5f6fa;
+$Tagbg: #f5f6fa;
+$Crossbutton: #898989;
+$Text: #2a2b2d;
+
+.astereisk {
+  color: $RED;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.primary {
+  background-color: $RED;
+  color: #fff;
+}
+.secondary {
+  color: $RED;
+}
+.disabled {
+  background-color: $RedBg;
+}
+
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 15px $GREY;
+    border-radius: 10px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $ScrollbarColor;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($color: $ScrollbarColor, $alpha: 0.8);
+  }
+}
+.custom-scrollbar-black {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 15px #777;
+    border-radius: 10px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 10px;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba($color: $ScrollbarColor, $alpha: 0.8);
+  }
+}
+
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.month-name {
+  display: inline-block;
+  margin-top: 0;
+  font-weight: 500;
+}
+.month-navigation {
+  display: inline-block;
+  margin-left: 10px;
+  button i::before {
+    color: $Blue;
+    font-size: 18px;
+  }
+}
+
+.calender-container {
+  border-radius: 7px;
+  padding: 20px;
+  border: 1px solid $GREY;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    img {
+      margin-right: 5px;
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid $RED;
+    color: $RED;
+    border-radius: 5px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    img {
+      margin-right: 10px;
+    }
+    &:hover {
+      box-shadow: 1px 1px 4px $RED;
+    }
+  }
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  top: -8px;
+  border-bottom: 10px solid black;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  bottom: -8px;
+  border-top: 10px solid black;
+}
+
+.arrow-up-right {
+  right: 20px;
+}
+
+.arrow-up-left {
+  left: 20px;
+}

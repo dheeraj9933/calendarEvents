@@ -1,0 +1,48 @@
+@import '../../App.scss';
+
+.month-dates {
+  display: flex;
+  flex-flow: column;
+}
+.month {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+  grid-template-rows: 125px 125px 125px 125px 125px 125px;
+ 
+  @media screen and (max-width: '768px') {
+    grid-template-rows: 80px 80px 80px 80px 80px 80px;
+  }
+  @media screen and (max-width: '540px') {
+    grid-template-rows: 70px 70px 70px 70px 70px 70px;
+  }
+}
+
+.week-days {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+  li {
+    
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    border: 2px solid $DateBorder;
+    color: $DateColor;
+    font-weight: 500;
+    border-bottom: 1px solid $DateBorder;
+    &:not(:first-child) {
+      border-left: none;
+    }
+  }
+  @media screen and (max-width: '768px') {
+    font-size: 0;
+    & span::first-letter {
+      font-size: 16px;
+    }
+  }
+}

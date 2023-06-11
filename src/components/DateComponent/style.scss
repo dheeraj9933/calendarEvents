@@ -1,0 +1,164 @@
+@import '../../App.scss';
+
+.date {
+  padding: 10px 5px 10px 10px;
+  border: 1px solid $DateBorder;
+  color: $DateColor;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:nth-child(7n + 1) {
+    border-left: 2px solid $DateBorder;
+  }
+  &.active-tooltip,
+  &.active-tooltip.events {
+    padding: 9px 4px 9px 11px;
+    border: 2px solid $Blue;
+  }
+  &.active-tooltip.events {
+    padding: 9px 4px 9px 11px;
+  }
+  
+  .date-number {
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+  }
+  &.today-date {
+    .date-number {
+      // justify-self: center;
+      position: relative;
+      left: 2px;
+      background-color: $Blue;
+      color: white;
+    }
+  }
+
+  &.events {
+    background-color: $Yellowbg;
+    border-left: 3px solid $Yellowborder;
+    .date-number {
+      color: $DarkGrey;
+    }
+  }
+  &.inactive-date {
+    background-color: $DisabledDateBg;
+    color: $DisabledDateColor;
+  }
+
+  &.holiday {
+    background-color: $RedBg;
+    border-left: 3px solid $RedBorder;
+  }
+
+  .event-title {
+    display: block;
+    padding: 5px 7px;
+    font-size: 14px;
+  }
+
+
+  .more-event {
+    padding: 5px 7px;
+    color: $Blue;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  overflow: visible;
+  .tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    display: none;
+    border-radius: 5px;
+
+    background-color: $DarkGrey;
+    color: $EventTitle;
+    z-index: 10;
+    .tooltip-title {
+      display: block;
+      font-size: 12px;
+      border-bottom: 1px solid $DateColor;
+      padding: 7px 20px;
+    }
+    .tooltip-list {
+      list-style-type: none;
+      max-height: 200px;
+      overflow-y: scroll;
+      margin: 5px 20px;
+      padding: 0 10px;
+      & > li {
+        padding: 12px 0;
+        border-bottom: 1px solid #777;
+        h4 {
+          margin: 0;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        p {
+          margin: 5px 0;
+          font-size: 13px;
+          color: #ccc;
+        }
+        .tooltip-tags {
+          list-style-type: none;
+          padding: 0;
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .tooltip-tag {
+          font-size: 13px;
+          color: #aaa;
+          &:not(:last-child):after {
+            content: '/';
+          }
+        }
+      }
+    }
+    &.show {
+      display: block;
+    }
+    .add-event {
+      display: block;
+      margin: 20px 30px 20px auto;
+      border-radius: 5px;
+      background-color: $ButtonBgGrey;
+      padding: 8px 15px;
+      font-weight: 500;
+      color: #fff;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: rgba($color: $ButtonBgGrey, $alpha: 0.7);
+      }
+    }
+    .no-events {
+      margin: 10px 20px;
+      color: #ccc;
+    }
+  }
+  @media screen and (max-width: '824px') {
+    padding: 5px;
+  }
+  
+  @media screen and (max-width: '768px') {
+    padding: 5px 5px 5px 8px;
+    &.active-tooltip,
+    &.active-tooltip.events {
+      padding: 9px 4px 9px 1px;
+    }
+    &.active-tooltip.events {
+      padding: 9px 4px 9px 1px;
+    }
+  }
+  @media screen and (max-width: '540px') {
+    padding: 10px 5px 10px 0;
+  }
+}
