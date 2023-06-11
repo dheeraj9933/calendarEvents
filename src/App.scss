@@ -5,6 +5,11 @@ body {
   }
   height: 100%;
 }
+.App {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+}
 
 // disabled bg of dates
 $GREY: #e8eae8;
@@ -197,5 +202,8 @@ input {
 }
 
 .hide {
+  padding: 0;
   opacity: 0;
+  height: 0;
+  width: 0;
 }

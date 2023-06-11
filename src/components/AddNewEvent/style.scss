@@ -82,8 +82,12 @@
         border-radius: 5px;
         overflow: hidden;
         background-color: #fff;
+        flex-basis: 150px;
         input {
           padding: 5px 10px;
+          &.hide {
+            padding: 0;
+          }
         }
         .clear-date {
           display: flex;
@@ -91,6 +95,7 @@
           color: $Crossbutton;
           align-items: center;
           background-color: $FormBg;
+          cursor: pointer;
         }
       }
       .choose-date {
@@ -98,7 +103,8 @@
         justify-content: flex-end;
         background-color: #fff;
         padding: 5px ;
-        flex-basis: 300px;
+        flex-basis: 100%;
+        cursor: pointer;
       }
       input[type='date']::-webkit-inner-spin-button,
       input[type='date']::-webkit-calendar-picker-indicator {

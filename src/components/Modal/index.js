@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import './style.scss'
 
-export default function AddNewEvent({ customClose, children }) {
+export default function AddNewEvent({ customClose, show, children }) {
   const modalRef = useRef(null);
   const handleModalClick = e => {
     e.stopPropagation();
@@ -10,9 +10,10 @@ export default function AddNewEvent({ customClose, children }) {
       customClose();
     }
   };
+  console.log(show);
 
   return (
-    <div className='modal' onClick={e => handleModalClick(e)}>
+    <div className={`modal ${show ? 'show' : ''}`} onClick={e => handleModalClick(e)}>
       <div className='modal-content' ref={modalRef}>
         {children}
       </div>

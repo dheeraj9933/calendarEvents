@@ -1,10 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
+
+
+import { AddEventModal } from '../../../App';
+
 export default function Tooltip({
   activeToolTip,
   date,
   events,
-  setShowAddEvent,
 }) {
+  const { setShowAddEvent, setDefaultDate } = useContext(AddEventModal);
   const absoluteDiv = useRef(null);
   const tooltipArrow = useRef(null);
   const viewportWidth = window.innerWidth;
@@ -96,7 +100,7 @@ export default function Tooltip({
       ) : (
         <div className='no-events'>No Events Present</div>
       )}
-      <button className='add-event' onClick={() => setShowAddEvent(true)}>
+      <button className='add-event' onClick={() => { setShowAddEvent(true); setDefaultDate(date) }}>
         <i className='fa-solid fa-plus'></i> Add Event
       </button>
     </div>

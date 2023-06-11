@@ -1,9 +1,8 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import EventData from '../../constants/event-data.json';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import { AddEventModal } from '../../App';
 import Tooltip from './components/ToolTip';
 
 export default function DateComponent({
@@ -15,7 +14,6 @@ export default function DateComponent({
   const [events, setEvents] = useState([]);
   const [hasEvents, setHasEvents] = useState(false);
   const [isHoliday, setIsHoliday] = useState(false);
-  const { setShowAddEvent } = useContext(AddEventModal);
   const isTodaysDate =
     new Date().toDateString() === new Date(date).toDateString();
   const isCurrentMonthDate = date.getMonth() === currentMonth;
@@ -62,7 +60,6 @@ export default function DateComponent({
         activeToolTip={activeToolTip}
         date={date}
         events={events}
-        setShowAddEvent={setShowAddEvent}
       />
     </li>
   );

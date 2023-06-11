@@ -4,7 +4,12 @@ import './style.scss';
 import AllTags from '../../constants/tags.json';
 
 import TagList from './components/TagList';
-export default function AddNewEvent({ customClose }) {
+import formatDate from '../../utils/formatDate';
+export default function AddNewEvent({
+  customClose,
+  defaultDate,
+  setDefaultDate,
+}) {
   const [showTags, setShowTags] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [tags, setTags] = useState({});
@@ -30,6 +35,7 @@ export default function AddNewEvent({ customClose }) {
   const openCalendar = () => {
     date.current.showPicker();
   };
+
   // Create object with all the tags
   useEffect(() => {
     const tagsObj = {};
@@ -38,6 +44,15 @@ export default function AddNewEvent({ customClose }) {
     });
     setTags(tagsObj);
   }, []);
+
+  useEffect(() => {
+    if (defaultDate) {
+      setEventDate(formatDate(defaultDate));
+    } 
+    return(() => {
+      setDefaultDate(null)
+    })
+  }, [defaultDate, setDefaultDate]);
   return (
     <div className='add-new-event-container'>
       <div className='title'>
@@ -70,12 +85,12 @@ export default function AddNewEvent({ customClose }) {
                 className={`${eventDate ? '' : 'hide'}`}
               />
               {eventDate ? (
-                <span className='clear-date' onClick={() => setEventDate(null)}>
-                  <i class='fa-solid fa-xmark'></i>
+                <span className='clear-date' onClick={() => setEventDate('')}>
+                  <i className='fa-solid fa-xmark'></i>
                 </span>
               ) : (
                 <span className='choose-date' onClick={openCalendar}>
-                  <i  class='fa-regular fa-calendar'></i>
+                  <i className='fa-regular fa-calendar'></i>
                 </span>
               )}
             </div>

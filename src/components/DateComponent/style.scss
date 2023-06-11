@@ -12,13 +12,13 @@
   }
   &.active-tooltip,
   &.active-tooltip.events {
-    padding: 9px 4px 9px 11px;
+    padding: 9px 4px 9px 9px;
     border: 2px solid $Blue;
   }
   &.active-tooltip.events {
     padding: 9px 4px 9px 11px;
   }
-  
+
   .date-number {
     border-radius: 50%;
     font-size: 18px;
@@ -31,7 +31,6 @@
   }
   &.today-date {
     .date-number {
-      // justify-self: center;
       position: relative;
       left: 2px;
       background-color: $Blue;
@@ -61,7 +60,6 @@
     padding: 5px 7px;
     font-size: 14px;
   }
-
 
   .more-event {
     padding: 5px 7px;
@@ -147,18 +145,16 @@
   @media screen and (max-width: '824px') {
     padding: 5px;
   }
-  
+
   @media screen and (max-width: '768px') {
     padding: 5px 5px 5px 8px;
+  
     &.active-tooltip,
     &.active-tooltip.events {
-      padding: 9px 4px 9px 1px;
+      padding: 4px 5px 5px 7px;
     }
     &.active-tooltip.events {
-      padding: 9px 4px 9px 1px;
+      padding:4px 5px 5px 9px;
     }
-  }
-  @media screen and (max-width: '540px') {
-    padding: 10px 5px 10px 0;
   }
 }

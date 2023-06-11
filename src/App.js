@@ -14,6 +14,7 @@ function App() {
   const [currentMonth, setCurrentMonth] = useState(0);
 
   const [showAddEvent, setShowAddEvent] = useState(false);
+  const [defaultDate, setDefaultDate] = useState(null);
   const dates = getDates(2023);
   // console.log(dates);
   const goToNextMonth = () => {
@@ -67,16 +68,22 @@ function App() {
         <AddEventModal.Provider
           value={{
             setShowAddEvent,
+            setDefaultDate,
           }}
         >
           <Month month={dates[currentMonth]} />
         </AddEventModal.Provider>
       </div>
-      {showAddEvent && (
-        <Modal customClose={closeModal}>
-          <AddNewEvent customClose={closeModal} />
+      <Modal customClose={closeModal} show={showAddEvent}>
+          <AddNewEvent
+            customClose={closeModal}
+            defaultDate={defaultDate}
+            setDefaultDate={setDefaultDate}
+          />
         </Modal>
-      )}
+      {/* {showAddEvent && (
+       
+      )} */}
     </div>
   );
 }
