@@ -68,6 +68,7 @@ export default function Tooltip({
       }
     };
   }, [activeToolTip, date , isMobile]);
+  console.log(events);
 
   return (
     <div
@@ -77,7 +78,7 @@ export default function Tooltip({
       <div ref={tooltipArrow} className='arrow-up'></div>
       {Array.isArray(events) && events.length ? (
         <>
-          <span className='tooltip-title'>{events.length + 1} events</span>
+          <span className='tooltip-title'>{events.length} event{events.length > 1 ? 's' : ''}</span>
           <ul className='tooltip-list custom-scrollbar-black'>
             {events.map(event => {
               return (
