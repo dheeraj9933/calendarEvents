@@ -90,7 +90,7 @@
     .tooltip-list {
       list-style-type: none;
       max-height: 200px;
-      overflow-y: scroll;
+      overflow-y: auto;
       margin: 5px 20px;
       padding: 0 10px;
       & > li {

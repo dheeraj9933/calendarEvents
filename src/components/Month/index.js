@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import DateComponent from '../DateComponent';
+import daysOfWeek from '../../constants/daysOfWeek';
 
 import './style.scss';
 
@@ -7,18 +8,10 @@ export default function Month({ month, activeToolTip, handleToolTip, MonthRef })
   const [prevDates, setPrevDates] = useState([]);
   const [nextDates, setNextDates] = useState([]);
   const [noOfRows, setNoOfRows] = useState(0);
-  
+
   const currentMonth = month[0].getMonth();
 
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  // Get previous months date to fill first week 
   const getPrevDates = firstDate => {
     let firstDay = new Date(firstDate);
     let prevArr = [];
@@ -31,6 +24,8 @@ export default function Month({ month, activeToolTip, handleToolTip, MonthRef })
     prevArr.reverse();
     setPrevDates([...prevArr]);
   };
+
+  // Get next months date to fill last week 
   const getNextDates = firstDate => {
     let firstDay = new Date(firstDate);
     let nextArr = [];
@@ -48,6 +43,7 @@ export default function Month({ month, activeToolTip, handleToolTip, MonthRef })
     getNextDates(month[month.length - 1]);
   }, [month]);
 
+  // Set no of weeks to pass to css grid
   useEffect(() => {
     setNoOfRows((month.length + nextDates.length + prevDates.length) / 7)
   }, [month, nextDates, prevDates])
@@ -62,12 +58,12 @@ export default function Month({ month, activeToolTip, handleToolTip, MonthRef })
         ))}
       </ul>
       <ul className={`month ${noOfRows > 5 ? 'extra-row' : ''}`}>
-        {prevDates.map((date, key) => {
+        {prevDates.map((date) => {
           return (
             <DateComponent key={date} date={date} currentMonth={currentMonth} />
           );
         })}
-        {month.map((date, key) => {
+        {month.map((date) => {
           return (
             <DateComponent
               key={date}
@@ -78,7 +74,7 @@ export default function Month({ month, activeToolTip, handleToolTip, MonthRef })
             />
           );
         })}
-        {nextDates.map((date, key) => {
+        {nextDates.map((date) => {
           return (
             <DateComponent key={date} date={date} currentMonth={currentMonth} />
           );

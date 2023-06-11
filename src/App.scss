@@ -6,7 +6,10 @@ body {
   margin: 0;
 }
 
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
   min-height: 100vh;
 }
 .App {
@@ -49,10 +52,7 @@ $Tagbg: #f5f6fa;
 $Crossbutton: #898989;
 $Text: #2a2b2d;
 
-.astereisk {
-  color: $RED;
-}
-
+// Default styles
 button {
   outline: none;
   border: none;
@@ -64,6 +64,11 @@ button {
 input {
   outline: none;
   border: none;
+}
+
+// Common classes
+.astereisk {
+  color: $RED;
 }
 
 .primary {
@@ -81,17 +86,14 @@ input {
   &::-webkit-scrollbar {
     width: 8px;
   }
-  /* Track */
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 15px $GREY;
     border-radius: 10px;
   }
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     background: $ScrollbarColor;
     border-radius: 10px;
   }
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: rgba($color: $ScrollbarColor, $alpha: 0.8);
   }
@@ -100,17 +102,14 @@ input {
   &::-webkit-scrollbar {
     width: 5px;
   }
-  /* Track */
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 15px #777;
     border-radius: 10px;
   }
-  /* Handle */
   &::-webkit-scrollbar-thumb {
     background: #ddd;
     border-radius: 10px;
   }
-  /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: rgba($color: $ScrollbarColor, $alpha: 0.8);
   }
@@ -127,6 +126,7 @@ input {
   margin-top: 0;
   font-weight: 500;
 }
+
 .month-navigation {
   display: inline-block;
   margin-left: 10px;
@@ -143,38 +143,6 @@ input {
   height: 100%;
   display: flex;
   flex-flow: column;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  h1 {
-    font-size: 24px;
-    font-weight: 500;
-    display: flex;
-    img {
-      margin-right: 5px;
-    }
-  }
-  button {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 500;
-    border: 2px solid $RED;
-    color: $RED;
-    border-radius: 5px;
-    padding: 8px 15px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    img {
-      margin-right: 10px;
-    }
-    &:hover {
-      box-shadow: 1px 1px 4px $RED;
-    }
-  }
 }
 
 .arrow-up {
@@ -210,4 +178,37 @@ input {
   opacity: 0;
   height: 0;
   width: 0;
+}
+
+// Header Styles
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    img {
+      margin-right: 5px;
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid $RED;
+    color: $RED;
+    border-radius: 5px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    img {
+      margin-right: 10px;
+    }
+    &:hover {
+      box-shadow: 1px 1px 4px $RED;
+    }
+  }
 }

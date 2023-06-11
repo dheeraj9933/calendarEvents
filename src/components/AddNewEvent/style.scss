@@ -59,6 +59,7 @@
           border-radius: 3px;
           padding: 8px 15px;
           margin-right: 10px;
+          font-weight: 400;
         }
       }
     }
@@ -147,16 +148,23 @@
           background-color: $FormBg;
           padding: 5px 10px;
           margin-bottom: 10px;
+          i {
+            position: relative;
+            top: 1px;
+          }
           input {
             background-color: $FormBg;
             padding: 5px 5px 5px 10px;
+            &::placeholder {
+              color: #aaa;
+            }
           }
         }
         .tag-select-list {
           list-style-type: none;
           padding: 0;
           max-height: 200px;
-          overflow-y: scroll;
+          overflow-y: auto;
           li {
             label {
               cursor: pointer;

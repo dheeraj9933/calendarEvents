@@ -11,12 +11,25 @@ import Modal from './components/Modal';
 export const AddEventModal = createContext();
 
 function App() {
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth()); // Set Default month to current month
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [defaultDate, setDefaultDate] = useState(null);
   const MonthRef = useRef(null)
   const dates = getDates(2023);
+  const [activeToolTip, setActiveTooltip] = useState({
+    date: null,
+    events: [],
+  });
+
+  const monthfirstDate = new Date(dates[currentMonth][0]);
+  const monthName = monthfirstDate.toLocaleString('default', { month: 'long' });
+  const year = monthfirstDate.getFullYear();
+  const closeModal = () => {
+    setShowAddEvent(false);
+    setDefaultDate(null);
+  };
+  
+  // Month Navigation
   const goToNextMonth = () => {
     if (currentMonth < 11) {
       setCurrentMonth(currentMonth + 1);
@@ -27,17 +40,7 @@ function App() {
       setCurrentMonth(currentMonth - 1);
     }
   };
-  const monthfirstDate = new Date(dates[currentMonth][0]);
-  const monthName = monthfirstDate.toLocaleString('default', { month: 'long' });
-  const year = monthfirstDate.getFullYear();
-  const closeModal = () => {
-    setShowAddEvent(false);
-    setDefaultDate(null);
-  };
-  const [activeToolTip, setActiveTooltip] = useState({
-    date: null,
-    events: [],
-  });
+  // Hide overflow when modal is open
   useEffect(() => {
     if (showAddEvent) {
       document.body.style.overflow = 'hidden';
@@ -45,11 +48,13 @@ function App() {
       document.body.style.overflow = 'auto';
     }
   }, [showAddEvent]);
+
   const hideToolTip = e => {
     if(!MonthRef.current.contains(e.target)) {
       setActiveTooltip({ date: null, events: [] });
     }
   };
+  
   const handleToolTip = value => {
     if (
       value.hasOwnProperty('date') &&

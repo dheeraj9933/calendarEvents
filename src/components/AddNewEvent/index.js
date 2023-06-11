@@ -20,6 +20,7 @@ export default function AddNewEvent({ customClose, defaultDate }) {
     updatesTags[value] = !tags[value];
     setTags(updatesTags);
   };
+
   // check if is valid
   useEffect(() => {
     if (eventTitle && description && eventDate) {
@@ -40,7 +41,6 @@ export default function AddNewEvent({ customClose, defaultDate }) {
       tagsObj[tag] = false;
     });
     setTags(tagsObj);
-   
   }, []);
 
   useEffect(() => {
@@ -52,12 +52,11 @@ export default function AddNewEvent({ customClose, defaultDate }) {
   }, [defaultDate]);
 
   const closeTagList = e => {
-    if(TagListRef?.current && !TagListRef?.current?.contains(e.target)) {
-      setShowTags(false)
-      console.log(TagListRef?.current);
-      console.log(TagListRef?.current?.contains(e.target));
+    if (TagListRef?.current && !TagListRef?.current?.contains(e.target)) {
+      setShowTags(false);
     }
   };
+
   return (
     <div className='add-new-event-container' onClick={closeTagList}>
       <div className='title'>
