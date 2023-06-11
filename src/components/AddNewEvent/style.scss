@@ -181,6 +181,8 @@
           font-size: 14px;
           font-weight: 600;
           background-color: $Tagbg;
+          display: inline-block;
+          margin: 2px;
           i {
             color: $Crossbutton;
             cursor: pointer;

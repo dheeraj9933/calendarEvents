@@ -5,11 +5,7 @@ import AllTags from '../../constants/tags.json';
 
 import TagList from './components/TagList';
 import formatDate from '../../utils/formatDate';
-export default function AddNewEvent({
-  customClose,
-  defaultDate,
-  setDefaultDate,
-}) {
+export default function AddNewEvent({ customClose, defaultDate }) {
   const [showTags, setShowTags] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [tags, setTags] = useState({});
@@ -17,6 +13,7 @@ export default function AddNewEvent({
   const [description, setDescription] = useState('');
   const [eventDate, setEventDate] = useState('');
   const date = useRef();
+  const TagListRef = useRef();
 
   const handleTagChange = value => {
     const updatesTags = { ...tags };
@@ -43,18 +40,26 @@ export default function AddNewEvent({
       tagsObj[tag] = false;
     });
     setTags(tagsObj);
+   
   }, []);
 
   useEffect(() => {
     if (defaultDate) {
       setEventDate(formatDate(defaultDate));
-    } 
-    return(() => {
-      setDefaultDate(null)
-    })
-  }, [defaultDate, setDefaultDate]);
+    } else {
+      setEventDate('');
+    }
+  }, [defaultDate]);
+
+  const closeTagList = e => {
+    if(TagListRef?.current && !TagListRef?.current?.contains(e.target)) {
+      setShowTags(false)
+      console.log(TagListRef?.current);
+      console.log(TagListRef?.current?.contains(e.target));
+    }
+  };
   return (
-    <div className='add-new-event-container'>
+    <div className='add-new-event-container' onClick={closeTagList}>
       <div className='title'>
         <img src={AddSvg} alt='' />
         <div className='title-text'>
@@ -121,7 +126,9 @@ export default function AddNewEvent({
                 ></i>
               </button>
               {showTags && (
-                <TagList tags={tags} handleTagChange={handleTagChange} />
+                <div ref={TagListRef} className='tag-list'>
+                  <TagList tags={tags} handleTagChange={handleTagChange} />
+                </div>
               )}
             </span>
             <div className='active-tags'>

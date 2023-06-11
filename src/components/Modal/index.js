@@ -10,7 +10,6 @@ export default function AddNewEvent({ customClose, show, children }) {
       customClose();
     }
   };
-  console.log(show);
 
   return (
     <div className={`modal ${show ? 'show' : ''}`} onClick={e => handleModalClick(e)}>

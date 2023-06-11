@@ -13,7 +13,7 @@ export default function TagList({ tags, handleTagChange }) {
     setFilteredTags(result);
   }, [search, tags]);
   return (
-    <div className='tag-list'>
+    <>
       <div className='search-box'>
         <i className='fa-solid fa-magnifying-glass'></i>
         <input
@@ -40,6 +40,6 @@ export default function TagList({ tags, handleTagChange }) {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 }

@@ -11,12 +11,11 @@ import Modal from './components/Modal';
 export const AddEventModal = createContext();
 
 function App() {
-  const [currentMonth, setCurrentMonth] = useState(0);
+  const [currentMonth, setCurrentMonth] = useState((new Date()).getMonth());
 
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [defaultDate, setDefaultDate] = useState(null);
   const dates = getDates(2023);
-  // console.log(dates);
   const goToNextMonth = () => {
     if (currentMonth < 11) {
       setCurrentMonth(currentMonth + 1);
@@ -32,6 +31,7 @@ function App() {
   const year = monthfirstDate.getFullYear();
   const closeModal = () => {
     setShowAddEvent(false);
+    setDefaultDate(null);
   };
   useEffect(() => {
     if (showAddEvent) {
@@ -75,15 +75,10 @@ function App() {
         </AddEventModal.Provider>
       </div>
       <Modal customClose={closeModal} show={showAddEvent}>
-          <AddNewEvent
-            customClose={closeModal}
-            defaultDate={defaultDate}
-            setDefaultDate={setDefaultDate}
-          />
-        </Modal>
-      {/* {showAddEvent && (
-       
-      )} */}
+        {showAddEvent && (
+          <AddNewEvent customClose={closeModal} defaultDate={defaultDate} />
+        )}
+      </Modal>
     </div>
   );
 }
