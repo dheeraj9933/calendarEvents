@@ -3,10 +3,14 @@ body {
   * {
     box-sizing: border-box;
   }
-  height: 100%;
+  margin: 0;
+}
+
+html, body, #root, .App {
+  min-height: 100vh;
 }
 .App {
-  width: 100%;
+  width: 95%;
   max-width: 1400px;
   margin: auto;
 }

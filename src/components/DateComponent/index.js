@@ -34,7 +34,6 @@ export default function DateComponent({
       });
     }
   }, [currentMonth, date]);
-
   return (
     <li
       // ref={triggerElement}
@@ -42,7 +41,7 @@ export default function DateComponent({
         !isCurrentMonthDate ? 'inactive-date' : ''
       } ${hasEvents && isCurrentMonthDate ? 'events' : ''} ${
         isHoliday ? 'holiday' : ''
-      } ${activeToolTip?.date === date ? 'active-tooltip' : ''} `}
+      } ${activeToolTip?.date?.toString() === date?.toString() ? 'active-tooltip' : ''} `}
       onClick={() => handleToolTip({ date, events })}
     >
       <span className='date-number'>{new Date(date).getDate()}</span>

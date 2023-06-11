@@ -10,7 +10,10 @@
   padding: 0;
   display: grid;
   grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
-  grid-template-rows: 125px 125px 125px 125px 125px 125px;
+  grid-template-rows: 125px 125px 125px 125px 125px;
+  &.extra-row {
+    grid-template-rows: 125px 125px 125px 125px 125px 125px;
+  }
  
   @media screen and (max-width: '768px') {
     grid-template-rows: 80px 80px 80px 80px 80px 80px;

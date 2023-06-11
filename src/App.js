@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext, useEffect, useRef } from 'react';
 import './App.scss';
 import Month from './components/Month';
 import getDates from './utils/createDates';
@@ -11,10 +11,11 @@ import Modal from './components/Modal';
 export const AddEventModal = createContext();
 
 function App() {
-  const [currentMonth, setCurrentMonth] = useState((new Date()).getMonth());
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
 
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [defaultDate, setDefaultDate] = useState(null);
+  const MonthRef = useRef(null)
   const dates = getDates(2023);
   const goToNextMonth = () => {
     if (currentMonth < 11) {
@@ -33,6 +34,10 @@ function App() {
     setShowAddEvent(false);
     setDefaultDate(null);
   };
+  const [activeToolTip, setActiveTooltip] = useState({
+    date: null,
+    events: [],
+  });
   useEffect(() => {
     if (showAddEvent) {
       document.body.style.overflow = 'hidden';
@@ -40,8 +45,24 @@ function App() {
       document.body.style.overflow = 'auto';
     }
   }, [showAddEvent]);
+  const hideToolTip = e => {
+    if(!MonthRef.current.contains(e.target)) {
+      setActiveTooltip({ date: null, events: [] });
+    }
+  };
+  const handleToolTip = value => {
+    if (
+      value.hasOwnProperty('date') &&
+      value?.date?.toString() !== activeToolTip?.date?.toString()
+    ) {
+      setActiveTooltip({ ...value });
+    } else {
+      setActiveTooltip({ date: null, events: [] });
+    }
+  };
+
   return (
-    <div className='App'>
+    <div className='App' onClick={hideToolTip}>
       <div className='header'>
         <h1>
           <img src={CalenderImg} alt='' /> Key Dates
@@ -71,7 +92,12 @@ function App() {
             setDefaultDate,
           }}
         >
-          <Month month={dates[currentMonth]} />
+          <Month
+            month={dates[currentMonth]}
+            activeToolTip={activeToolTip}
+            handleToolTip={handleToolTip}
+            MonthRef={MonthRef}
+          />
         </AddEventModal.Provider>
       </div>
       <Modal customClose={closeModal} show={showAddEvent}>

@@ -3,13 +3,11 @@ import DateComponent from '../DateComponent';
 
 import './style.scss';
 
-export default function Month({ month }) {
+export default function Month({ month, activeToolTip, handleToolTip, MonthRef }) {
   const [prevDates, setPrevDates] = useState([]);
   const [nextDates, setNextDates] = useState([]);
-  const [activeToolTip, setActiveTooltip] = useState({
-    date: null,
-    events: [],
-  });
+  const [noOfRows, setNoOfRows] = useState(0);
+  
   const currentMonth = month[0].getMonth();
 
   const daysOfWeek = [
@@ -22,7 +20,6 @@ export default function Month({ month }) {
     'Saturday',
   ];
   const getPrevDates = firstDate => {
-    // let firstDay = firstDate;
     let firstDay = new Date(firstDate);
     let prevArr = [];
     while (firstDay.getDay() > 0) {
@@ -35,7 +32,6 @@ export default function Month({ month }) {
     setPrevDates([...prevArr]);
   };
   const getNextDates = firstDate => {
-    // let firstDay = firstDate;
     let firstDay = new Date(firstDate);
     let nextArr = [];
     while (firstDay.getDay() < 6) {
@@ -51,16 +47,13 @@ export default function Month({ month }) {
     getPrevDates(month[0]);
     getNextDates(month[month.length - 1]);
   }, [month]);
-  const handleToolTip = value => {
-    if (value.hasOwnProperty('date') && value.date !== activeToolTip.date) {
-      setActiveTooltip({ ...value });
-    } else {
-      setActiveTooltip({ date: null, events: [] });
-    }
-  };
 
+  useEffect(() => {
+    setNoOfRows((month.length + nextDates.length + prevDates.length) / 7)
+  }, [month, nextDates, prevDates])
+ 
   return (
-    <div className='month-dates'>
+    <div className='month-dates' ref={MonthRef}>
       <ul className='week-days'>
         {daysOfWeek.map(day => (
           <li key={day}>
@@ -68,7 +61,7 @@ export default function Month({ month }) {
           </li>
         ))}
       </ul>
-      <ul className='month'>
+      <ul className={`month ${noOfRows > 5 ? 'extra-row' : ''}`}>
         {prevDates.map((date, key) => {
           return (
             <DateComponent key={date} date={date} currentMonth={currentMonth} />

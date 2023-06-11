@@ -16,7 +16,7 @@ export default function Tooltip({
 
   // make sure tooltip is fully visible
   useEffect(() => {
-    if (activeToolTip?.date === date) {
+    if (activeToolTip?.date?.toString() === date.toString()) {
      
       const viewportHeight = window.innerHeight;
       // Get the dimensions of the trigger element and absolute div
@@ -71,7 +71,7 @@ export default function Tooltip({
 
   return (
     <div
-      className={`tooltip ${activeToolTip?.date === date ? 'show' : ''}`}
+      className={`tooltip ${activeToolTip?.date?.toString() === date?.toString() ? 'show' : ''}`}
       ref={absoluteDiv}
     >
       <div ref={tooltipArrow} className='arrow-up'></div>
