@@ -60,7 +60,7 @@ export default function AddNewEvent({ customClose, defaultDate }) {
   return (
     <div className='add-new-event-container' onClick={closeTagList}>
       <div className='title'>
-        <img src={AddSvg} alt='' />
+        <img src={AddSvg} alt='Add Event' />
         <div className='title-text'>
           <input
             type='text'
@@ -89,11 +89,11 @@ export default function AddNewEvent({ customClose, defaultDate }) {
                 className={`${eventDate ? '' : 'hide'}`}
               />
               {eventDate ? (
-                <span className='clear-date' onClick={() => setEventDate('')}>
+                <button className='clear-date' onClick={() => setEventDate('')} title='Clear Date'>
                   <i className='fa-solid fa-xmark'></i>
-                </span>
+                </button>
               ) : (
-                <span className='choose-date' onClick={openCalendar}>
+                <span className='choose-date' onClick={openCalendar} title='Add Date'>
                   <i className='fa-regular fa-calendar'></i>
                 </span>
               )}
@@ -116,7 +116,7 @@ export default function AddNewEvent({ customClose, defaultDate }) {
           <div className='form-element text-box-container'>
             <span className='add-tags-label'>
               <label htmlFor=''>Tags</label>
-              <button onClick={() => setShowTags(!showTags)}>
+              <button onClick={() => setShowTags(!showTags)} title='Add Tags'>
                 Add Tags{' '}
                 <i
                   className={`fa-solid fa-sort-down ${
@@ -149,10 +149,10 @@ export default function AddNewEvent({ customClose, defaultDate }) {
           </div>
         </div>
         <div className='btn-container'>
-          <button className={`primary ${!isValid ? 'disabled' : ''}`}>
+          <button className={`primary ${!isValid ? 'disabled' : ''}`} title='Create Event'>
             Create Event
           </button>
-          <button className='secondary' onClick={customClose}>
+          <button className='secondary' onClick={customClose} title='Discard'>
             Discard
           </button>
         </div>

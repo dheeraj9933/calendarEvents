@@ -70,10 +70,10 @@ function App() {
     <div className='App' onClick={hideToolTip}>
       <div className='header'>
         <h1>
-          <img src={CalenderImg} alt='' /> Key Dates
+          <img src={CalenderImg} alt='Key Dates' /> Key Dates
         </h1>
-        <button onClick={() => setShowAddEvent(true)}>
-          <img src={AddEvent} alt='' />
+        <button onClick={() => setShowAddEvent(true)} title='Add Event'>
+          <img src={AddEvent} alt='Add Event' />
           Add Event
         </button>
       </div>
